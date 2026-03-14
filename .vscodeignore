@@ -1,0 +1,7 @@
+src/**
+.ts
+.gitignore
+tsconfig.json
+README.md.map
+node_modules/typescript/**
+node_modules/@types/**

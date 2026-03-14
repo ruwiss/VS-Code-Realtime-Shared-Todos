@@ -1,0 +1,162 @@
+{
+  "name": "git-note",
+  "displayName": "Git Note",
+  "description": "Firebase Realtime Database destekli ortak todo not eklentisi.",
+  "version": "0.0.1",
+  "publisher": "ruwis",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:gitNote.sidebarView",
+    "onView:gitNote.todoListView",
+    "onCommand:gitNote.addTodo",
+    "onCommand:gitNote.refreshTodos",
+    "onCommand:gitNote.openSettings",
+    "onCommand:gitNote.openProjects",
+    "onCommand:gitNote.createBucket",
+    "onCommand:gitNote.toggleTodoItem",
+    "onCommand:gitNote.editTodoItem",
+    "onCommand:gitNote.deleteTodoItem"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitNote.addTodo",
+        "title": "Git Note: Todo Ekle",
+        "icon": "$(add)"
+      },
+      {
+        "command": "gitNote.refreshTodos",
+        "title": "Git Note: Yenile",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "gitNote.openSettings",
+        "title": "Git Note: Bildirim Ayarlarını Aç",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "gitNote.openProjects",
+        "title": "Git Note: Projeler",
+        "icon": "$(folder-library)"
+      },
+      {
+        "command": "gitNote.createBucket",
+        "title": "Git Note: Proje Oluştur",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "gitNote.toggleTodoItem",
+        "title": "Git Note: Tamamla / Geri Aç",
+        "icon": "$(check)"
+      },
+      {
+        "command": "gitNote.editTodoItem",
+        "title": "Git Note: Düzenle",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "gitNote.deleteTodoItem",
+        "title": "Git Note: Sil",
+        "icon": "$(trash)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gitNote",
+          "title": "Git Note",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "gitNote": [
+        {
+          "id": "gitNote.sidebarView",
+          "name": "Genel"
+        },
+        {
+          "type": "webview",
+          "id": "gitNote.todoListView",
+          "name": "Todo Listesi"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "gitNote.openProjects",
+          "when": "view == gitNote.sidebarView",
+          "group": "navigation"
+        },
+        {
+          "command": "gitNote.openSettings",
+          "when": "view == gitNote.sidebarView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "gitNote.addTodo",
+          "when": "view == gitNote.todoListView",
+          "group": "navigation"
+        },
+        {
+          "command": "gitNote.refreshTodos",
+          "when": "view == gitNote.todoListView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "gitNote.openProjects",
+          "when": "view == gitNote.todoListView",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "gitNote.openProjects",
+          "when": "view == gitNote.sidebarView && viewItem == projectHint",
+          "group": "inline"
+        },
+        {
+          "command": "gitNote.openProjects",
+          "when": "view == gitNote.sidebarView && viewItem == projects",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Git Note",
+      "properties": {
+        "gitNote.notifications.soundEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Todo eklendiğinde, silindiğinde veya tamamlandığında ses çal."
+        },
+        "gitNote.notifications.notifyOnOwnChanges": {
+          "type": "boolean",
+          "default": false,
+          "description": "Kendi yaptığın değişikliklerde de bildirim göster."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@vscode/codicons": "^0.0.36"
+  }
+}

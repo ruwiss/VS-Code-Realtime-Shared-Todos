@@ -1,0 +1,193 @@
+:root {
+  color-scheme: light dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 6px 0 0;
+  font-family: var(--vscode-font-family);
+  color: var(--vscode-foreground);
+  background: var(--vscode-sideBar-background);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message,
+.todo-row {
+  margin: 0 8px;
+}
+
+.icon-button,
+.link-button {
+  border: 1px solid var(--vscode-button-border, transparent);
+  background: var(--vscode-button-secondaryBackground, var(--vscode-button-background));
+  color: var(--vscode-button-secondaryForeground, var(--vscode-button-foreground));
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.link-button {
+  padding: 5px 10px;
+}
+
+.message {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--vscode-widget-border, transparent);
+  background: var(--vscode-editorWidget-background);
+}
+
+.message.error {
+  border-color: var(--vscode-errorForeground);
+}
+
+.message-title {
+  font-weight: 600;
+}
+
+.message-body {
+  margin-top: 4px;
+  color: var(--vscode-descriptionForeground);
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+}
+
+.todo-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 10px 8px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.todo-row:hover {
+  background: var(--vscode-list-hoverBackground);
+  border-color: var(--vscode-list-hoverBackground);
+}
+
+.todo-row.completed .todo-text {
+  text-decoration: line-through;
+  opacity: 0.75;
+}
+
+.todo-check {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+.todo-check input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.todo-check span {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid var(--vscode-checkbox-border, var(--vscode-widget-border));
+  background: var(--vscode-checkbox-background, var(--vscode-input-background));
+}
+
+.todo-check input:checked + span {
+  background: var(--vscode-checkbox-selectBackground, var(--vscode-button-background));
+  border-color: var(--vscode-checkbox-selectBorder, var(--vscode-button-background));
+}
+
+.todo-check input:checked + span::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border-right: 2px solid var(--vscode-checkbox-foreground, var(--vscode-button-foreground));
+  border-bottom: 2px solid var(--vscode-checkbox-foreground, var(--vscode-button-foreground));
+  transform: rotate(45deg);
+}
+
+.todo-main {
+  min-width: 0;
+  padding-right: 42px;
+}
+
+.todo-text {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.45;
+}
+
+.todo-meta {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  margin-top: 4px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--vscode-descriptionForeground);
+}
+
+.todo-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 4px;
+}
+
+.icon-button {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.icon-button .codicon {
+  font-size: 12px;
+}
+
+.icon-button.subtle {
+  opacity: 0.9;
+}
+
+.icon-button.danger {
+  color: var(--vscode-errorForeground);
+}
+
+button:disabled,
+input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
