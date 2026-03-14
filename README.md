@@ -1,26 +1,30 @@
 # Git Note
 
-Firebase Realtime Database ile ortak kullanılan basit ve temiz bir VS Code todo/not eklentisi.
+A clean and collaborative VS Code todo/notes extension powered by Firebase Realtime Database.
 
-## Özellikler
+## Screenshot
 
-- Activity Bar içinde özel **Git Note** ikonu
-- Üst kısımda native özet alanı, alt kısımda özel tasarlanmış native-benzeri todo listesi
-- Firebase Realtime Database ile anlık senkronizasyon
-- Proje / bucket mantığı: birden fazla ortak todo alanı
-- Son seçilen projeyi hatırlama ve açılışta otomatik devam etme
-- Todo ekleme, düzenleme, tamamlama ve silme
-- Arkadaşının yaptığı değişiklikleri anlık görme
-- Üst kısımda son aktiviteyi yapan cihaz adı + tarih/saat bilgisi
-- Todo eklendiğinde, silindiğinde veya tamamlandığında sesli bildirim
+![Git Note screenshot](./screenshot.png)
 
-## Firebase kurulumu
+## Features
 
-Bu proje kişisel kullanım için tasarlandığı için güvenlik tarafı sade tutuldu.
+- Custom **Git Note** icon in the Activity Bar
+- Native-style summary area at the top and a custom native-like todo list below
+- Realtime sync with Firebase Realtime Database
+- Project / bucket structure for multiple shared todo spaces
+- Remembers the last selected project and restores it on startup
+- Add, edit, complete, reopen, and delete todos
+- See your friend's changes instantly
+- Shows the last activity device name with date/time
+- Sound notifications when a todo is added, deleted, completed, or updated
 
-1. Firebase projesi oluştur.
-2. **Realtime Database** etkinleştir.
-3. Geliştirme / kişisel kullanım için kuralları geçici olarak açık yap:
+## Firebase setup
+
+This project is intended for personal use, so the security setup is kept simple.
+
+1. Create a Firebase project.
+2. Enable **Realtime Database**.
+3. For development / personal usage, temporarily use open rules:
 
 ```json
 {
@@ -31,47 +35,51 @@ Bu proje kişisel kullanım için tasarlandığı için güvenlik tarafı sade t
 }
 ```
 
-4. Veritabanı URL'ini kopyala.
+4. Copy your database URL.
 
-## Veritabanı adresi
+## Database URL
 
-Veritabanı adresi kod içine sabitlendi:
-src/constants.ts
+The database URL is hardcoded in the source:
 
+- `src/constants.ts`
 - `https://xxxxx-default-rtdb.firebaseio.com`
 
-Yani UI üzerinden ayrıca girmen gerekmez.
+So there is no need to enter it through the UI.
 
-## Geliştirme
+## Development
 
 ```bash
 npm install
 npm run compile
 ```
 
-Sonra `F5` ile Extension Development Host aç.
+Then press `F5` to open the Extension Development Host.
 
-## Kullanım
+## Usage
 
-- Sol taraftaki **Git Note** ikonuna tıkla
-- **Genel** bölümünde aktif proje, bağlantı durumu ve son aktivite görünür
-- **Todo Listesi** bölümünde daha kontrollü, native-benzeri özel liste görünür
-- Üstteki **Projeler** butonundan mevcut bucket'ları gör
-- İstersen yeni proje / bucket oluştur
-- Son seçtiğin proje kaydedilir ve yeniden açılışta otomatik yüklenir
-- Üstteki `+` ile aktif projeye yeni todo ekle
-- Todo satırlarında metnin tamamı görünür
-- Satır üstü aksiyonlardan tamamla, düzenle veya sil
+- Click the **Git Note** icon in the Activity Bar
+- In **General**, you can see the active project, connection status, and last activity
+- In **Todo List**, you get a more controlled native-like custom list
+- Use the **Projects** button to view existing buckets
+- Create a new project / bucket if needed
+- The last selected project is saved and restored automatically
+- Use the top `+` action to add a todo to the active project
+- Todo text is shown in full in the list
+- Use row actions to complete, edit, or delete todos
 
-## Not
+## Notes
 
-- Todo satırlarında görünen kişi bilgisi doğrudan cihaz adı olarak tutulur.
-- Cihaz adı otomatik olarak sistem hostname bilgisinden alınır.
-- Projeler Firebase içinde `git-note/buckets/<proje>` altında tutulur.
-- Windows/Linux uyumluluğu için yalnızca harf, rakam ve `-` korunur; maksimum **15 karakter** kullanılır.
+- Device names are used as the visible identity in todo rows.
+- The device name is automatically derived from the system hostname.
+- Projects are stored under `git-note/buckets/<project>` in Firebase.
+- For Windows/Linux compatibility, only letters, numbers, and `-` are kept, with a maximum of **15 characters**.
 
-Bildirim sesleri extension içinde paketlenir ve yerel oynatıcılarla çalınır:
+Notification sounds are bundled inside the extension and played through local system tools:
 
 - macOS: `afplay`
 - Windows: PowerShell beep
-- Linux: `canberra-gtk-play` / `paplay` / terminal bell fallback
+- Linux: `ffplay` fallback
+
+## Turkish README
+
+For Turkish documentation, see [README.tr.md](./README.tr.md).
